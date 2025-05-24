@@ -344,13 +344,81 @@ def collect_cancel():
 @home.route("/collect_list/")
 @user_login
 def collect_list():
-    page = request.args.get('page', 1, type=int) # 获取page参数值
-    # 根据user_id删选Collect表数据
-    page_data = Collect.query.filter_by(user_id = session['user_id']).order_by(
+    page = request.args.get('page', 1, type=int)  # 获取页码参数，默认1
+    # 查询当前用户的收藏记录，按添加时间降序排列
+    page_data = Collect.query.filter_by(user_id=session['user_id']).order_by(
         Collect.addtime.desc()
-    ).paginate(page=page, per_page=3)                                     # 使用分页方法
-    return render_template('home/collect_list.html',page_data=page_data) # 渲染模板
+    ).paginate(page=page, per_page=3)  # 每页3条记录
 
+    return render_template('home/collect_list.html', page_data=page_data)
+
+
+@home.route('/collect/remove/', methods=['POST'])
+def collect_remove():
+    """
+    删除收藏商品
+    AJAX请求需要传递参数: id (收藏记录的ID)
+    返回JSON格式: {success: bool, message: str}
+    """
+    try:
+        # 验证用户是否登录
+        if 'user_id' not in session:
+            return jsonify({'success': False, 'message': '请先登录'})
+
+        # 获取要删除的收藏ID
+        collect_id = request.form.get('id')
+        if not collect_id:
+            return jsonify({'success': False, 'message': '参数错误'})
+
+        # 查询收藏记录
+        collect = Collect.query.get(collect_id)
+        if not collect:
+            return jsonify({'success': False, 'message': '收藏记录不存在'})
+
+        # 验证当前用户是否有权删除这条记录
+        if collect.user_id != session['user_id']:
+            return jsonify({'success': False, 'message': '无权操作'})
+
+        # 执行删除
+        db.session.delete(collect)
+        db.session.commit()
+
+        return jsonify({'success': True, 'message': '删除成功'})
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'success': False, 'message': f'删除失败: {str(e)}'})
+
+
+@home.route('/collect/clear/', methods=['POST'])
+def collect_clear():
+    """
+    清空当前用户的所有收藏
+    返回JSON格式: {success: bool, message: str}
+    """
+    try:
+        # 验证用户是否登录
+        if 'user_id' not in session:
+            return jsonify({'success': False, 'message': '请先登录'})
+
+        # 获取当前用户ID
+        user_id = session['user_id']
+
+        # 删除该用户所有收藏记录
+        deleted_count = Collect.query.filter_by(user_id=user_id).delete()
+        db.session.commit()
+
+        return jsonify({
+            'success': True,
+            'message': f'已清空{deleted_count}条收藏记录'
+        })
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({
+            'success': False,
+            'message': f'清空失败: {str(e)}'
+        })
 
 @home.route("/cart/update/", methods=["POST"])
 @user_login
