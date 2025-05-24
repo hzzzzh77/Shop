@@ -124,3 +124,12 @@ class OrdersDetail(db.Model):
     order_id = db.Column(db.Integer, db.ForeignKey('orders.id'))  # 所属订单
     number = db.Column(db.Integer, default=0)  # 购买数量
 
+class Collect(db.Model):
+    __tablename__ = "collect"
+    id = db.Column(db.Integer, primary_key=True)  # 编号
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # 所属用户
+    goods_id = db.Column(db.Integer, db.ForeignKey('goods.id'))  # 所属商品
+    addtime = db.Column(db.DateTime, index=True, default=datetime.now)  # 添加时间
+
+    def __repr__(self):
+        return "<Collect %r>" % self.id

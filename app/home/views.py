@@ -2,7 +2,7 @@
 from . import home
 from app import db
 from app.home.forms import LoginForm,RegisterForm,PasswordForm
-from app.models import User ,Goods,Orders,Cart,OrdersDetail
+from app.models import User, Goods, Orders, Cart, OrdersDetail, Collect
 from flask import render_template, url_for, redirect, flash, session, request,make_response
 from werkzeug.security import generate_password_hash
 from functools import wraps
@@ -301,11 +301,11 @@ def collect_add():
     """
     收藏景区
     """
-    scenic_id = request.args.get("scenic_id", "")   # 接收传递的参数scenic_id
+    goods_id = request.args.get("goods_id", "")   # 接收传递的参数scenic_id
     user_id   = session.get('user_id',0)            # 获取当前用户的ID
     collect = Collect.query.filter_by(              # 根据用户ID和景区ID判断是否该收藏
         user_id =int(user_id),
-        scenic_id=int(scenic_id)
+        goods_id=int(goods_id)
     ).count()
     # 已收藏
     if collect == 1:
@@ -314,7 +314,7 @@ def collect_add():
     if collect == 0:
         collect = Collect(
             user_id =int(user_id),
-            scenic_id=int(scenic_id)
+            goods_id=int(goods_id)
         )
         db.session.add(collect)  # 添加数据
         db.session.commit()      # 提交数据

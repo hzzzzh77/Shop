@@ -994,7 +994,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
     display: none;
     left: 0;
     position: absolute;
-    top: 0��
+    top: 0;
     display: block;
     width: 100%;
     left: 1px !important;
@@ -2184,7 +2184,7 @@ input.required{
 	float: left;
 }
 .star{
-	color: 
+	color: #000000 ;
 }
 /******************�������õ���ʽ************************/
 .search_box{width:438px;height:48px;line-height:48px;border:1px solid #F19F9F; float:right;margin-top:22px; margin-right:80px;position:relative;}

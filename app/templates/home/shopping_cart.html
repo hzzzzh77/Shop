@@ -50,14 +50,23 @@
                                     <div class="col-sm-4 col-sm-offset-8">
                                         <table class="table table-bordered">
                                             <tbody>
-                                                <tr >
-                                                <span>
-                                                    <strong>总计:</strong>
-                                                    <p id="total_price"></p>
-                                                </span>
+                                                <tr>
+                                                    <span>
+                                                        <strong>总计:</strong>
+                                                        <p id="total_price"></p>
+                                                    </span>
                                                 </tr>
                                             </tbody>
                                         </table>
+                                    </div>
+                                </div>
+                                <!-- 添加编辑和删除按钮 -->
+                                <div class="row">
+                                    <div class="col-sm-4 col-sm-offset-8">
+                                        <div class="pull-right">
+                                            <a href="javascript:updateCart();" class="btn btn-primary btn-primary">编辑数量</a>
+                                            <a href="javascript:deleteCart();" class="btn btn-primary btn-primary">删除商品</a>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- //显示总计金额  -->
