@@ -257,7 +257,9 @@ def shopping_cart():
 @user_login
 def cart_order():
     if request.method == 'POST':
-        user_id = session.get('user_id',0) # 获取用户id
+        user_id = session.get('user_id',0)
+        selected_items = request.form.getlist('selected_items')  # 获取选中的商品ID
+
         # 添加订单
         orders = Orders(
             user_id = user_id,
@@ -266,22 +268,27 @@ def cart_order():
             recevie_address = request.form.get('recevie_address'),
             remark = request.form.get('remark')
         )
-        db.session.add(orders)  # 添加数据
-        db.session.commit()      # 提交数据
-        # 添加订单详情
-        cart = Cart.query.filter_by(user_id=user_id).all()
-        object = []
-        for item in cart :
-            object.append(
-                OrdersDetail(
-                    order_id=orders.id,
-                    goods_id=item.goods_id,
-                    number = item.number,)
-            )
-        db.session.add_all(object)
-        # 更改购物车状态
-        Cart.query.filter_by(user_id=user_id).update({'user_id': 0})
+        db.session.add(orders)
         db.session.commit()
+
+        # 添加订单详情
+        object = []
+        for item_id in selected_items:
+            cart_item = Cart.query.filter_by(id=item_id, user_id=user_id).first()
+            if cart_item:
+                object.append(
+                    OrdersDetail(
+                        order_id=orders.id,
+                        goods_id=cart_item.goods_id,
+                        number = cart_item.number,
+                    )
+                )
+                # 从购物车中移除已下单的商品
+                db.session.delete(cart_item)
+
+        db.session.add_all(object)
+        db.session.commit()
+
     return redirect(url_for('home.index'))
 
 @home.route("/order_list/",methods=['GET','POST'])
@@ -433,13 +440,35 @@ def cart_update():
     db.session.commit()
     return jsonify({"status": 1, "msg": "更新成功"})
 
+
 @home.route("/cart/delete/<int:id>/", methods=["DELETE"])
+@home.route("/cart/cart_delete/", methods=["DELETE"], defaults={'id': None})
 @user_login
 def cart_delete(id):
     """
-    删除购物车商品
+    删除购物车商品（支持单个和批量删除）
+    单个删除: DELETE /cart/delete/<id>/
+    批量删除: DELETE /cart/cart_delete/  body: {"ids": [1,2,3]}
     """
-    cart = Cart.query.get_or_404(id)
-    db.session.delete(cart)
-    db.session.commit()
-    return jsonify({"status": 1, "msg": "删除成功"})
+    if id is not None:
+        # 单个删除逻辑
+        cart = Cart.query.get_or_404(id)
+        db.session.delete(cart)
+    else:
+        # 批量删除逻辑
+        ids = request.get_json().get('ids', [])
+        if not ids:
+            return jsonify({"status": 0, "msg": "请提供要删除的商品ID列表"})
+
+        # 批量删除符合条件的记录
+        Cart.query.filter(Cart.id.in_(ids)).delete(synchronize_session=False)
+
+    try:
+        db.session.commit()
+        return jsonify({"status": 1, "msg": "删除成功"})
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"status": 0, "msg": f"删除失败: {str(e)}"}), 500
+
+
+

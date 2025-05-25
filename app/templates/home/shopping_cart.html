@@ -161,7 +161,8 @@
         </div>
     </div>
     <!-- 使用jBox插件实现一个支付对话框 -->
-    <script type="text/javascript" src="{{url_for('static',filename='home/js/jBox/jquery-1.4.2.min.js')}}"></script>
+    <!-- 在页面头部或脚本之前加载 jQuery -->
+    <script src="{{ url_for('static', filename='home/js/jBox/jquery-1.4.2.min.js') }}"></script>
     <script type="text/javascript" src="{{url_for('static',filename='home/js/jBox/jquery.jBox-2.3.min.js')}}"></script>
     <link type="text/css" rel="stylesheet" href="{{url_for('static',filename='home/js/jBox/Skins2/Pink/jbox.css')}}" />
     <script type="text/javascript">
@@ -174,85 +175,80 @@
             $('#total_price').text(total_price+"元")
         });
         function zhifu() {
-            //验证收货人姓名
+            // 验证收货人信息
             if ($('#recevieName').val() === "") {
                 alert('收货人姓名不能为空！');
                 return;
             }
-            //验证收货人手机
             if ($('#tel').val() === "") {
                 alert('收货人手机不能为空！');
                 return;
             }
-            //验证手机号是否合法
             if (isNaN($('#tel').val())) {
                 alert("手机号请输入数字");
                 return;
             }
-            //验证收货人地址
             if ($('#address').val() === "") {
                 alert('收货人地址不能为空！');
                 return;
             }
-            //设置对话框中要显示的内容
-            var html = '<div class="popup_cont">'
-                    + '<div style="width: 256px; height: 250px; text-align: center; margin:70px" >'
-                    + '<image src="/static/home/images/qr.png" width="256" height="256" />'
-                    + '<p style="color:red;padding-tope:30px">该页面仅为测试页面，并未实现支付功能</p></div>'
-                    + '</div>';
-            var content = {
-                state1 : {
-                    content : html,
-                    buttons : {
-                        '取消' : 0,
-                        '支付' : 1
-                    },
-                    buttonsFocus : 0,
-                    submit : function(v, h, f) {
-                        if (v == 0) {//取消按钮的响应事件
-                            return true; //关闭窗口
-                        }
-                        if (v == 1) {//支付按钮的响应事件
-                            document.getElementById('myform').submit();//提交表单
-                            return true;
-                        }
-                        return false;
-                    }
-                }
-            };
-            $.jBox.open(content, '支付', 400, 450);//打开支付窗口
+
+            // 获取选中的商品ID
+            var selectedItems = [];
+            $('.cart-item-checkbox:checked').each(function() {
+                selectedItems.push($(this).val());
+            });
+
+            if (selectedItems.length === 0) {
+                alert('请选择要结账的商品');
+                return;
+            }
+
+            // 将选中的商品ID添加到表单中
+            selectedItems.forEach(function(id, index) {
+                $('<input>').attr({
+                    type: 'hidden',
+                    name: 'selected_items',
+                    value: id
+                }).appendTo('#myform');
+            });
+
+            // 提交表单
+            document.getElementById('myform').submit();
         }
 
         function deleteCart() {
-        // 获取选中的商品ID
-        var selectedItems = [];
-        $('.cart-item-checkbox:checked').each(function() {
-            selectedItems.push($(this).val());
-        });
-
-        if (selectedItems.length === 0) {
-            alert('请选择要删除的商品');
-            return;
-        }
-
-        if (confirm('确定要删除选中的商品吗？')) {
-            // 发送删除请求
-            $.ajax({
-                url: "{{ url_for('home.cart_delete', id=0) }}".replace('/0/', '/' + selectedItems[0] + '/'),
-                type: 'DELETE',
-                success: function(response) {
-                    if (response.status === 1) {
-                        location.reload(); // 删除成功后刷新页面
-                    } else {
-                        alert('删除失败');
-                    }
-                },
-                error: function() {
-                    alert('请求失败，请稍后重试');
-                }
+            // 获取选中的商品ID
+            var selectedItems = [];
+            $('.cart-item-checkbox:checked').each(function() {
+                selectedItems.push($(this).val());
             });
+
+            if (selectedItems.length === 0) {
+                alert('请选择要删除的商品');
+                return;
+            }
+
+            if (confirm('确定要删除选中的商品吗？')) {
+                // 发送删除请求
+                selectedItems.forEach(function(itemId) {
+                    $.ajax({
+                        url: "{{ url_for('home.cart_delete', id=0) }}".replace('/0/', '/' + itemId + '/'),
+                        type: 'DELETE',
+                        success: function(response) {
+                            if (response.status === 1) {
+                                location.reload(); // 删除成功后刷新页面
+                            } else {
+                                alert('删除失败');
+                            }
+                        },
+                        error: function() {
+                            alert('请求失败，请稍后重试');
+                        }
+                    });
+                });
+            }
         }
-    }
     </script>
     <!-- // 使用jBox插件实现一个支付对话框 -->
 

@@ -82,23 +82,57 @@
 	            </div>
 	        </dd>
 	    </dl>
-	    <dl class="foot">
-	        <dt>特色服务</dt>
-	        <dd>
-	            <div>
-	                <a href="http://www.mingrisoft.com/" target="_blank" rel="stylesheet">明日学院</a>
-	            </div>
-	            <div>
-	                <a href="http://www.mingribook.com/" target="_blank" rel="stylesheet">明日图书</a>
-	            </div>
-	            <div>
-	                <a href="http://www.mrbccd.com/" target="_blank" rel="stylesheet">明日编程词典</a>
-	            </div>
-	            <div>
-	                <a href="http://mrbccd.taobao.com/" target="_blank" rel="stylesheet">明日淘宝店铺</a>
-	            </div>
-	        </dd>
-	    </dl>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .foot { margin: 20px; }
+        .foot dt { font-weight: bold; margin-bottom: 10px; }
+        .foot dd div { margin: 5px 0; }
+        .foot a { color: #06c; text-decoration: none; }
+        .foot a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <dl class="foot" id="serviceLinks">
+        <dt>特色服务</dt>
+        <dd id="linksContainer"></dd>
+    </dl>
+
+    <script>
+        // 链接数据数组
+        const links = [
+            { name: "明日学院", url: "http://www.mingrisoft.com/" },
+            { name: "明日图书", url: "http://www.mingribook.com/" },
+            { name: "明日编程词典", url: "http://www.mrbccd.com/" },
+            { name: "明日淘宝店铺", url: "http://mrbccd.taobao.com/" }
+        ];
+
+        // 动态生成链接
+        function renderLinks() {
+            const container = document.getElementById('linksContainer');
+
+            links.forEach(link => {
+                const div = document.createElement('div');
+                const a = document.createElement('a');
+
+                a.href = link.url;
+                a.target = "_blank";
+                a.rel = "stylesheet";
+                a.textContent = link.name;
+
+                div.appendChild(a);
+                container.appendChild(div);
+            });
+        }
+
+        // 页面加载完成后执行
+        window.onload = renderLinks;
+    </script>
+</body>
+</html>
+
 	    <dl class="foot">
 	        <dt>关于我们</dt>
 	        <dd>
