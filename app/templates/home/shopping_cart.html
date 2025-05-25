@@ -68,7 +68,7 @@
                                 <div class="row">
                                     <div class="col-sm-4 col-sm-offset-8">
                                         <div class="pull-right">
-                                            <a href="javascript:updateCart();" class="btn btn-primary btn-primary">编辑数量</a>
+
                                             <a href="javascript:deleteCart();" class="btn btn-primary btn-primary">删除商品</a>
                                         </div>
                                     </div>
@@ -222,6 +222,37 @@
             };
             $.jBox.open(content, '支付', 400, 450);//打开支付窗口
         }
+
+        function deleteCart() {
+        // 获取选中的商品ID
+        var selectedItems = [];
+        $('.cart-item-checkbox:checked').each(function() {
+            selectedItems.push($(this).val());
+        });
+
+        if (selectedItems.length === 0) {
+            alert('请选择要删除的商品');
+            return;
+        }
+
+        if (confirm('确定要删除选中的商品吗？')) {
+            // 发送删除请求
+            $.ajax({
+                url: "{{ url_for('home.cart_delete', id=0) }}".replace('/0/', '/' + selectedItems[0] + '/'),
+                type: 'DELETE',
+                success: function(response) {
+                    if (response.status === 1) {
+                        location.reload(); // 删除成功后刷新页面
+                    } else {
+                        alert('删除失败');
+                    }
+                },
+                error: function() {
+                    alert('请求失败，请稍后重试');
+                }
+            });
+        }
+    }
     </script>
     <!-- // 使用jBox插件实现一个支付对话框 -->
 
