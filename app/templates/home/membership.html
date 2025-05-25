@@ -1,0 +1,157 @@
+DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会员特权介绍</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .membership-tiers {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .tier {
+            background: rgba(255,255,255,0.9);
+            border-radius: 15px;
+            padding: 40px 30px;
+            width: 300px;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .tier:hover {
+            transform: translateY(-10px);
+        }
+        .tier-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #ff758c;
+        }
+        .tier-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        .tier-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+        .tier-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .join-btn {
+            display: block;
+            background: #ff758c;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .join-btn:hover {
+            background: #ff5e7d;
+        }
+        .vip-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #ffc107;
+            color: #333;
+            padding: 5px 15px;
+            font-weight: bold;
+            transform: rotate(45deg) translate(30%, -50%);
+            transform-origin: 100% 0;
+            width: 120px;
+            text-align: center;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: rgba(255,255,255,0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>会员专属特权</h1>
+            <p>选择适合您的会员等级，享受更多优惠和服务</p>
+        </header>
+        
+        <div class="membership-tiers">
+            <div class="tier">
+                <div class="tier-name">普通会员</div>
+                <div class="tier-price">免费</div>
+                <ul class="tier-features">
+                    <li>基础购物功能</li>
+                    <li>普通客服支持</li>
+                    <li>参与部分促销活动</li>
+                    <li>积分累计</li>
+                </ul>
+                <a href="#" class="join-btn">立即加入</a>
+            </div>
+            
+            <div class="tier">
+                <div class="vip-badge">推荐</div>
+                <div class="tier-name">黄金会员</div>
+                <div class="tier-price">¥199/年</div>
+                <ul class="tier-features">
+                    <li>所有普通会员特权</li>
+                    <li>全场9.5折优惠</li>
+                    <li>专属客服</li>
+                    <li>生日特权礼包</li>
+                    <li>双倍积分</li>
+                </ul>
+                <a href="#" class="join-btn">升级会员</a>
+            </div>
+            
+            <div class="tier">
+                <div class="tier-name">钻石会员</div>
+                <div class="tier-price">¥499/年</div>
+                <ul class="tier-features">
+                    <li>所有黄金会员特权</li>
+                    <li>全场9折优惠</li>
+                    <li>24小时专属客服</li>
+                    <li>优先发货</li>
+                    <li>三倍积分</li>
+                    <li>专属礼品包装</li>
+                </ul>
+                <a href="#" class="join-btn">尊享特权</a>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 购物商城 会员中心 版权所有</p>
+        </footer>
+    </div>
+</body>
+</html>

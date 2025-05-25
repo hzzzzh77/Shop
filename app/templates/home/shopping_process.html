@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物流程指南</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .step {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 30px;
+            width: 22%;
+            margin-bottom: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .step:hover {
+            transform: translateY(-10px);
+        }
+        .step-number {
+            background: #3498db;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .step-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        .step-desc {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>轻松购物四步走</h1>
+            <p>简单易懂的购物流程，让您享受愉快的购物体验</p>
+        </header>
+        
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3 class="step-title">浏览商品</h3>
+                <p class="step-desc">在我们的商城浏览各类商品，使用筛选功能快速找到您需要的物品</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3 class="step-title">加入购物车</h3>
+                <p class="step-desc">选择心仪商品，添加到购物车，可以随时查看和修改</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3 class="step-title">结算支付</h3>
+                <p class="step-desc">选择收货地址和支付方式，完成订单支付</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3 class="step-title">等待收货</h3>
+                <p class="step-desc">订单处理完成后，我们会尽快为您发货，您可以在个人中心查看物流信息</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 购物商城 版权所有</p>
+        </footer>
+    </div>
+</body>
+</html>

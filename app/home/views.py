@@ -444,5 +444,14 @@ def cart_delete(id):
     db.session.commit()
     return jsonify({"status": 1, "msg": "删除成功"})
 
+@home.route("/shopping_process/")
+def shopping_process():
+    return render_template("home/shopping_process.html")
 
+@home.route("/travel_group/")
+def travel_group():
+    return render_template("home/travel_group.html")
 
+@home.route("/membership/")
+def membership():
+    return render_template("home/membership.html")
