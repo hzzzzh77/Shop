@@ -1,0 +1,757 @@
+/* ============================================
+   现代化简约风格 CSS
+   颜色方案：白色 + 蓝色 + 绿色
+   ============================================ */
+
+:root {
+    --primary-color: #007BFF;
+    --primary-dark: #0056B3;
+    --secondary-color: #28A745;
+    --danger-color: #FF6B6B;
+    --bg-white: #FFFFFF;
+    --bg-light: #F8F9FA;
+    --text-dark: #222222;
+    --text-muted: #666666;
+    --border-color: #DEE2E6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============ 基础样式 ============ */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-dark);
+    text-decoration: none;
+}
+
+/* ============ 排版 ============ */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-dark);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+/* ============ 顶部工具栏 ============ */
+#toolbar {
+    background-color: var(--bg-white);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.75rem 0;
+}
+
+.toolbar-ct {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toolbar-ct-1 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.toolbar-ct-1 p {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.toolbar-ct-1 i {
+    color: var(--primary-color);
+    margin-right: 0.25rem;
+}
+
+.toolbar-ct-2 {
+    font-size: 0.875rem;
+}
+
+.toolbar-ct-2 a {
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+.toolbar-ct-2 a:hover {
+    color: var(--primary-dark);
+}
+
+/* ============ 导航栏 ============ */
+.navbar {
+    background-color: var(--bg-white) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--text-dark) !important;
+}
+
+.nav-link {
+    color: var(--text-dark) !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+.nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 3px 3px 0 0;
+}
+
+/* ============ 搜索框 ============ */
+.search_box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.top-nav-search {
+    display: flex;
+    align-items: center;
+}
+
+.top-nav-search form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.top-nav-search-input {
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px 0 0 4px !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.875rem;
+    transition: border-color 0.3s ease;
+}
+
+.top-nav-search-input:focus {
+    border-color: var(--primary-color) !important;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.search_box_img {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 0 4px 4px 0;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search_box_img:hover {
+    background-color: var(--primary-dark);
+}
+
+.search_box_img img {
+    max-height: 24px;
+}
+
+/* ============ 购物车按钮 ============ */
+.cart-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.cart-button:hover {
+    background-color: var(--primary-dark);
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+/* ============ 卡片式布局 ============ */
+.card-modern {
+    background-color: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card-modern:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.card-header-modern {
+    background-color: var(--bg-light);
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-header-modern h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.card-body-modern {
+    padding: 1.5rem;
+}
+
+/* ============ 商品卡片 ============ */
+.product-card {
+    background-color: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    border-color: var(--primary-color);
+}
+
+.product-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background-color: var(--bg-light);
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
+}
+
+.product-info {
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.4em;
+}
+
+.product-price-section {
+    margin-bottom: 1rem;
+    flex: 1;
+}
+
+.product-price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--danger-color);
+    margin-bottom: 0.25rem;
+}
+
+.product-price-original {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-decoration: line-through;
+    margin-left: 0.5rem;
+}
+
+.product-rating {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.product-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* ============ 按钮 ============ */
+.btn-modern {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.btn-primary-modern {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary-modern:hover {
+    background-color: var(--primary-dark);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+.btn-secondary-modern {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-secondary-modern:hover {
+    background-color: #218838;
+    color: white;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
+}
+
+.btn-light-modern {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    border: 1px solid var(--border-color);
+}
+
+.btn-light-modern:hover {
+    background-color: var(--border-color);
+    color: var(--text-dark);
+}
+
+.btn-sm-modern {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    flex: 1;
+}
+
+.btn-block-modern {
+    width: 100%;
+}
+
+/* ============ 表格 ============ */
+.table-modern {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--bg-white);
+}
+
+.table-modern thead {
+    background-color: var(--text-dark);
+    color: white;
+}
+
+.table-modern th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.table-modern td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table-modern tbody tr:hover {
+    background-color: var(--bg-light);
+}
+
+.table-modern tbody tr:nth-child(even) {
+    background-color: var(--bg-light);
+}
+
+/* ============ 表单 ============ */
+.form-modern {
+    background-color: var(--bg-white);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.form-group-modern {
+    margin-bottom: 1.5rem;
+}
+
+.form-label-modern {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.875rem;
+}
+
+.form-control-modern {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.form-control-modern:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.form-control-modern::placeholder {
+    color: var(--text-muted);
+}
+
+/* ============ 分页 ============ */
+.pagination-modern {
+    display: flex;
+    list-style: none;
+    gap: 0.5rem;
+    justify-content: center;
+    padding: 1.5rem 0;
+}
+
+.pagination-modern li {
+    margin: 0;
+}
+
+.pagination-modern a,
+.pagination-modern span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.875rem;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+}
+
+.pagination-modern a:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    text-decoration: none;
+}
+
+.pagination-modern .active span {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* ============ 模态框 ============ */
+.modal-modern {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-modern.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content-modern {
+    background-color: var(--bg-white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    max-width: 500px;
+    width: 90%;
+    animation: slideUp 0.3s ease;
+}
+
+.modal-header-modern {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header-modern h3 {
+    margin: 0;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: var(--text-dark);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ============ 页脚 ============ */
+#mr-footer {
+    background-color: var(--text-dark);
+    color: white;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.mr-footer-section {
+    margin-bottom: 2rem;
+}
+
+.mr-footer-section h4 {
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.mr-footer-section a {
+    color: #B0B0B0;
+    font-size: 0.875rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.mr-footer-section a:hover {
+    color: white;
+}
+
+.mr-copyright {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #B0B0B0;
+}
+
+.mr-copyright a {
+    color: #B0B0B0;
+}
+
+.mr-copyright a:hover {
+    color: white;
+}
+
+/* ============ 响应式断点 ============ */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    .product-card {
+        margin-bottom: 1rem;
+    }
+
+    .toolbar-ct {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .toolbar-ct-right {
+        width: 100%;
+    }
+
+    .form-modern {
+        padding: 1.5rem;
+    }
+
+    .modal-content-modern {
+        max-width: 90%;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 1.25rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    .product-name {
+        font-size: 0.875rem;
+    }
+
+    .product-price {
+        font-size: 1rem;
+    }
+
+    .btn-modern {
+        padding: 0.6rem 1rem;
+        font-size: 0.75rem;
+    }
+
+    .table-modern {
+        font-size: 0.75rem;
+    }
+
+    .table-modern th,
+    .table-modern td {
+        padding: 0.75rem 0.5rem;
+    }
+}
+
+/* ============ 实用工具类 ============ */
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mt-5 { margin-top: 3rem; }
+
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 1rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mb-5 { margin-bottom: 3rem; }
+
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 1rem; }
+.p-4 { padding: 1.5rem; }
+.p-5 { padding: 3rem; }
+
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 1rem; }
+.gap-4 { gap: 1.5rem; }
+
+.text-muted {
+    color: var(--text-muted);
+}
+
+.text-danger {
+    color: var(--danger-color);
+}
+
+.text-success {
+    color: var(--secondary-color);
+}
+
+.bg-light {
+    background-color: var(--bg-light);
+}
+
+.bg-white {
+    background-color: var(--bg-white);
+}
+
+.rounded {
+    border-radius: 6px;
+}
+
+.shadow-sm {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-lg {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}

@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="34c330d6-a387-4641-b9a2-a963de92d948" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Shop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Shop.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/4d79df46-b791-43e8-87df-822ba5e128dd.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/4d79df46-b791-43e8-87df-822ba5e128dd.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/home/membership.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/home/membership.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +51,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;first&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/Lenovo/works/python/code/Shop&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -127,12 +125,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Flask 服务器.Flask" />
       <item itemvalue="JavaScript 调试.footer.html" />
       <item itemvalue="JavaScript 调试.membership.html" />
       <item itemvalue="JavaScript 调试.shopping_process.html" />
       <item itemvalue="JavaScript 调试.travel_group.html" />
       <item itemvalue="Python.manage" />
+      <item itemvalue="Flask 服务器.Flask" />
     </list>
     <recent_temporary>
       <list>
@@ -170,6 +168,11 @@
       <workItem from="1748173317018" duration="874000" />
       <workItem from="1748252637873" duration="18000" />
       <workItem from="1748257320623" duration="351000" />
+      <workItem from="1748265305148" duration="25000" />
+      <workItem from="1748320646408" duration="167000" />
+      <workItem from="1748344602461" duration="480000" />
+      <workItem from="1748443428403" duration="15000" />
+      <workItem from="1773391484594" duration="3121000" />
     </task>
     <servers />
   </component>
@@ -189,6 +192,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Shop$Flask.coverage" NAME="Flask 覆盖结果" MODIFIED="1748068247410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/Shop$manage.coverage" NAME="manage 覆盖结果" MODIFIED="1748257481571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Shop$manage.coverage" NAME="manage 覆盖结果" MODIFIED="1773394382668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -1,220 +1,169 @@
 {% extends "home/common.html" %}
 {% block content %}
-	<!-- 轮播广告及热门商品 -->
-	<div class="container mr-sl mr-sl-1">
-		<div class="mr-spotlight mr-spotlight-1  row">
-			<!-- 显示轮播广告 -->
-			<div
-				class=" col-lg-9 col-md-12  col-sm-3 hidden-sm   col-xs-6 hidden-xs ">
-				<div class="mr-module module " id="Mod159">
-					<div class="module-inner">
-						<div class="module-ct">
-							<div class="mijoshop">
-								<div class="container_oc">
-									<div class="slideshow">
-										<div id="slidershow" class="nivoSlider">
-											<a href="#" class="nivo-imageLink" style="display: block;cursor:default">
-												<img src="{{url_for('static',filename='images/banner/img1.png')}}" class="img-responsive"
-												style="display: none;">
-											</a>
-											<a href="#"
-												class="nivo-imageLink" style="display: none;cursor:default">
-											<img src="{{url_for('static',filename='images/banner/img2.png')}}" class="img-responsive"
-												style="display: none;">
-											</a>
-											<a href="#" class="nivo-imageLink" style="display: none;cursor:default">
-												<img src="{{url_for('static',filename='images/banner/img3.png')}}" class="img-responsive"
-												style="display: none;">
-											</a>
-										</div>
-									</div>
-									<script type="text/javascript">
-										//实现调用幻灯片插件轮播广告
-										jQuery(document).ready(function() {
-											jQuery('#slidershow').nivoSlider();
-										});
-									</script>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- 显示热门商品 -->
-			<div class="col-lg-3  col-md-6 hidden-md   col-sm-3 hidden-sm   col-xs-6 hidden-xs ">
-				<div class="mr-module module highlight " id="Mod160">
-					<div class="module-inner">
-						<h3 class="module-title ">
-							<span>热门商品</span>
-						</h3>
-						<div class="module-ct">
-							<div class="mijoshop">
-								<div class="container_oc">
-									<div class="box_oc">
-										<!-- 循环显示热门商品 ：添加两条商品信息-->
-										{% for item in hot_goods %}
-										<div class="box-product product-grid">
-											<div>
-												<div class="image">
-													<a href="/goods_detail/{{item.id}}?type={{item.supercat_id}}">
-														<img src="{{url_for('static',filename='images/goods/'+item.picture)}}" width="250px">
-													</a>
-												</div>
-												<div class="name">
-													<a href="/goods_detail/{{item.id}}?type={{item.supercat_id}}">{{item.name}}</a>
-												</div>
-												<!-- 星级评分条 -->
-												<div class="rating">
-													<span class="fa fa-stack"><i
-														class="fa fa-star fa-stack-2x"></i><i
-														class="fa fa-star-o fa-stack-2x"></i> </span> <span
-														class="fa fa-stack"><i
-														class="fa fa-star fa-stack-2x"></i><i
-														class="fa fa-star-o fa-stack-2x"></i> </span> <span
-														class="fa fa-stack"><i
-														class="fa fa-star fa-stack-2x"></i><i
-														class="fa fa-star-o fa-stack-2x"></i> </span> <span
-														class="fa fa-stack"><i
-														class="fa fa-star fa-stack-2x"></i><i
-														class="fa fa-star-o fa-stack-2x"></i> </span> <span
-														class="fa fa-stack"><i
-														class="fa fa-star fa-stack-2x"></i><i
-														class="fa fa-star-o fa-stack-2x"></i> </span>
-												</div>
-												<!-- // 星级评分条 -->
-												<!-- 商品价格 -->
-												<div class="price">
-													<span class="price-new">价格：{{item.current_price}} 元</span>
-												</div>
-												<!-- // 商品价格 -->
-											</div>
-										</div>
-										{% endfor %}
-										<!-- // 循环显示热门商品 ：添加两条商品信息-->
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- // 显示热门商品 -->
-		</div>
-	</div>
-	<!-- //轮播广告及热门商品  -->
-	<!-- 最新上架及打折商品展示 -->
-	<nav class="container mr-masstop  hidden-sm hidden-xs">
-	<div class="custom">
-		<div>
-			<div class="ja-tabswrap default" style="width: 100%;">
-				<div id="myTab" class="container">
-					<h3 class="index_h3">
-						<span class="index_title">最新上架</span>
-					</h3>
-					<!-- //最新上架选项卡 -->
-					<div class="ja-tab-content ja-tab-content col-6 active"
-						style="opacity: 1; width: 100%; visibility: visible;">
-						<div class="ja-tab-subcontent">
-							<div class="mijoshop">
-								<div class="container_oc">
-									<div class="row">
-										<!-- 循环显示最新上架商品 ：添加12条商品信息-->
-										{% for item in new_goods %}
-										<div class="product-grid col-lg-2 col-md-3 col-sm-6 col-xs-12">
-											<div class="product-thumb transition">
-												<div class="actions">
-													<div class="image">
-														<a href="/goods_detail/{{item.id}}?type={{item.supercat_id}}">
-															<img src="{{url_for('static',filename='images/goods/'+item.picture)}}" alt="{{item.name}}" class="img-responsive">
-														</a>
-													</div>
-													<div class="button-group">
-														<div class="cart">
-															<button class="btn btn-primary btn-primary" type="button"
-																data-toggle="tooltip"
-																onclick='javascript:window.location.href="/cart_add/?goods_id={{item.id}}&number=1"; '
-																style="display: none; width: 33.3333%;"
-																data-original-title="加入到购物车">
-																<i class="fa fa-shopping-cart"></i>
-															</button>
-														</div>
-													</div>
-												</div>
-												<div class="caption">
-													<div class="name" style="height: 40px">
-														<a href="/goods_detail/{{item.id}}?type={{item.supercat_id}}">
-															{{item.name}}
-														</a>
-													</div>
-													<p class="price">
-														价格：{{item.current_price}}元
-													</p>
-												</div>
-											</div>
-										</div>
-										{% endfor %}
-										
-										<!-- //循环显示最新上架商品：添加12条商品信息 -->
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- //最新上架选项卡 -->
-					<!-- 打折商品选项卡 -->
-					<h3 class="index_h3"><span class="index_title">打折商品</span></h3>
-					<div class="ja-tab-subcontent">
-						<div class="mijoshop">
-							<div class="container_oc">
-								<div class="row">
-									<!-- 循环显示打折商品 ：添加12条商品信息-->
-									{% for item in sale_goods %}
-									<div class="product-grid col-lg-2 col-md-3 col-sm-6 col-xs-12">
-										<div class="product-thumb transition">
-											<div class="actions">
-												<div class="image">
-													<a href="/goods_detail/{{item.id}}?type={{item.supercat_id}}">
-														<img src="{{url_for('static',filename='images/goods/'+item.picture)}}"
-															 alt="{{item.name}}" class="img-responsive">
-													</a>
-												</div>
-												<div class="button-group">
-													<div class="cart">
-														<button class="btn btn-primary btn-primary" type="button"
-															data-toggle="tooltip"
-															onclick='javascript:window.location.href="/cart_add/?goods_id={{item.id}}&number=1"; '
-															style="display: none; width: 33.3333%;"
-															data-original-title="加入到购物车">
-															<i class="fa fa-shopping-cart"></i>
-														</button>
-													</div>
-												</div>
-											</div>
-											<div class="caption">
-												<div class="name" style="height: 40px">
-													<a href="/goods_detail/{{item.id}}?type={{item.supercat_id}}" style="width: 95%">
-														{{item.name}}</a>
-												</div>
-												<div class="name" style="margin-top: 10px">
-													<span style="color: #0885B1">分类：</span>{{item.subcat.cat_name}}
-												</div>
-												<span class="price"> 现价：{{item.current_price}} 元
-												</span><br> <span class="oldprice">原价：{{item.original_price}}元
-												</span>
-											</div>
-										</div>
-									</div>
-									{% endfor %}
-									<!-- 循环显示打折商品 ：添加12条商品信息-->
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- //打折商品 选项卡-->
-			</div>
-		</div>
-	</div>
-	</nav>
-<!-- //版权栏 -->
+
+<div class="container-fluid py-4 bg-light">
+    <div class="container">
+        <!-- 轮播广告和热门商品 -->
+        <div class="row g-3">
+            <!-- 轮播广告 -->
+            <div class="col-lg-9">
+                <div id="bannerCarousel" class="carousel slide rounded-3 shadow-sm overflow-hidden" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner" style="aspect-ratio: 16/6; overflow: hidden;">
+                        <div class="carousel-item active h-100">
+                            <img src="{{url_for('static',filename='images/banner/img1.png')}}" class="d-block w-100 h-100" style="object-fit: cover;" alt="Banner 1">
+                        </div>
+                        <div class="carousel-item h-100">
+                            <img src="{{url_for('static',filename='images/banner/img2.png')}}" class="d-block w-100 h-100" style="object-fit: cover;" alt="Banner 2">
+                        </div>
+                        <div class="carousel-item h-100">
+                            <img src="{{url_for('static',filename='images/banner/img3.png')}}" class="d-block w-100 h-100" style="object-fit: cover;" alt="Banner 3">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 热门商品侧边栏 -->
+            <div class="col-lg-3">
+                <div class="card-modern h-100">
+                    <div class="card-header-modern">
+                        <h5 class="mb-0">
+                            <i class="fas fa-fire text-danger me-2"></i>热门商品
+                        </h5>
+                    </div>
+                    <div class="card-body-modern">
+                        <div class="row g-2">
+                            {% for item in hot_goods %}
+                            <div class="col-12">
+                                <div class="product-card mb-2">
+                                    <a href="/goods_detail/{{item.id}}?type={{item.supercat_id}}" class="text-decoration-none">
+                                        <div class="product-image" style="aspect-ratio: 1;">
+                                            <img src="{{url_for('static',filename='images/goods/'+item.picture)}}" alt="{{item.name}}">
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="product-name" style="min-height: auto; -webkit-line-clamp: 1;">{{item.name}}</div>
+                                            <div class="product-price mt-2">¥{{item.current_price}}</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 最新上架和打折商品 -->
+<div class="container py-5">
+    <!-- 选项卡导航 -->
+    <ul class="nav nav-tabs nav-fill mb-4" id="goodsTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="newGoods-tab" data-bs-toggle="tab" data-bs-target="#newGoods" type="button" role="tab" aria-controls="newGoods" aria-selected="true">
+                <i class="fas fa-star me-2"></i><strong>最新上架</strong>
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="saleGoods-tab" data-bs-toggle="tab" data-bs-target="#saleGoods" type="button" role="tab" aria-controls="saleGoods" aria-selected="false">
+                <i class="fas fa-tag me-2"></i><strong>打折商品</strong>
+            </button>
+        </li>
+    </ul>
+
+    <!-- 选项卡内容 -->
+    <div class="tab-content" id="goodsTabsContent">
+        <!-- 最新上架 -->
+        <div class="tab-pane fade show active" id="newGoods" role="tabpanel" aria-labelledby="newGoods-tab">
+            <div class="row g-3">
+                {% for item in new_goods %}
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <div class="product-card h-100">
+                        <a href="/goods_detail/{{item.id}}?type={{item.supercat_id}}" class="text-decoration-none text-dark h-100 d-flex flex-column">
+                            <div class="product-image">
+                                <img src="{{url_for('static',filename='images/goods/'+item.picture)}}" alt="{{item.name}}" class="img-fluid">
+                            </div>
+                            <div class="product-info flex-grow-1">
+                                <div class="product-name">{{item.name}}</div>
+                                <div class="mt-auto">
+                                    <div class="product-price">¥{{item.current_price}}</div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="product-actions">
+                            <button class="btn btn-sm btn-primary-modern flex-grow-1" onclick="addToCart({{item.id}}, 1)" title="加入购物车">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                            <button class="btn btn-sm btn-light-modern flex-grow-1" onclick="collectGoods({{item.id}})" title="收藏">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- 打折商品 -->
+        <div class="tab-pane fade" id="saleGoods" role="tabpanel" aria-labelledby="saleGoods-tab">
+            <div class="row g-3">
+                {% for item in sale_goods %}
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
+                    <div class="product-card h-100 position-relative">
+                        <!-- 折扣标签 -->
+                        <div style="position: absolute; top: 8px; right: 8px; background-color: #FF6B6B; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; z-index: 10;">
+                            折扣
+                        </div>
+
+                        <a href="/goods_detail/{{item.id}}?type={{item.supercat_id}}" class="text-decoration-none text-dark h-100 d-flex flex-column">
+                            <div class="product-image">
+                                <img src="{{url_for('static',filename='images/goods/'+item.picture)}}" alt="{{item.name}}" class="img-fluid">
+                            </div>
+                            <div class="product-info flex-grow-1">
+                                <div class="product-name">{{item.name}}</div>
+                                <div class="text-muted small mb-2">
+                                    <span class="badge bg-light text-dark">{{item.subcat.cat_name}}</span>
+                                </div>
+                                <div class="mt-auto">
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <div class="product-price m-0">¥{{item.current_price}}</div>
+                                        <del class="text-muted small" style="font-size: 0.75rem;">¥{{item.original_price}}</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="product-actions">
+                            <button class="btn btn-sm btn-primary-modern flex-grow-1" onclick="addToCart({{item.id}}, 1)" title="加入购物车">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                            <button class="btn btn-sm btn-light-modern flex-grow-1" onclick="collectGoods({{item.id}})" title="收藏">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // 支持旧的 NivoSlider 脚本，但现在使用 Bootstrap Carousel
+    // 这里可以移除旧的 tab.js 中的代码
+</script>
 {% endblock %}

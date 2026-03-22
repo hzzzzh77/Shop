@@ -1,82 +1,126 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-<head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>登录-51商城</title>
-<link rel="stylesheet" href="{{url_for('static',filename='home/css/mr-01.css')}}" type="text/css">
-</head>
-<body>
-	<div id="mr-mainbody" class="container mr-mainbody">
-		<div class="row">
-			<!-- 主体内容 -->
-			<div id="mr-content" class="mr-content col-xs-12">
-				<div class="login-wrap" style="margin-bottom: 60px; margin-top: 50px">
-					<div style="max-width: 540px; margin: 0 auto;">
-						<a href="index.html" title="点击返回首页"><img src="{{url_for('static',filename='home/images/51logo.png')}}"></a>
-					</div>
-					<div class="login">
-						<div class="page-header" style="pause: 0px;"> <h1 class="login_h1">会员登录</h1> </div>
-						    {% for msg in get_flashed_messages(category_filter=["err"]) %}
-								<div style="color:red;text-align:center;font-size:16px">
-								  	{{ msg }}
-								</div>
-							{% endfor %}
-						<!-- 会员登录表单 -->
-						<form action="" method="post" class="form-horizontal">
-							<fieldset>
-								<div class="form-group">
-									<div class="col-sm-4 control-label">
-										<label id="username-lbl" for="username" class="required">账户 ：</label>
-									</div>
-									<div class="col-sm-8">
-										<!-- 账户文本框 -->
-										{{form.username}}
-										{% for err in form.username.errors %}
-										<span class="error">{{ err }}</span>
-										{% endfor %}
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-4 control-label">
-										<label id="password" for="password" class="required">密码 ：</label>
-									</div>
-									<div class="col-sm-8">
-										<!-- 密码文本框 -->
-										{{form.password}}
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-4 control-label">
-										<label id="password-lbl" for="password" class="required">验证码 ：</label>
-									</div>
-									<div class="col-sm-8" style="clear: none;">
-										<!-- 验证码文本框 -->
-										{{form.verify_code}}
-											<!-- 显示验证码 -->
-											<img class="img_checkcode" src="{{url_for('home.get_code')}}" width="116"
-	 											height="43" onclick="this.src='{{url_for('home.get_code')}}'+'?'+ Math.random()">
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-offset-4 col-sm-8">
-										{{form.csrf_token}}
-										{{form.submit}}
-									</div>
-								</div>
-								<div class="form-group"
-									style="border-top: 1px solid #D9D9D9; margin: 20px;">
-									<label
-										style="float: right; color: #858585; margin-right: 40px; margin-top: 10px; font-size: 14px;">没有账户？<a
-										href="{{url_for('home.register')}}">立即注册</a></label>
-								</div>
-							</fieldset>
-						</form>
-					</div>
-				</div>
-			</div>
-			<!-- //主体内容 -->
-		</div>
-	</div>
-</body>
-</html>
+{% extends "home/common.html" %}
+{% block content %}
+
+<div class="container py-5" style="min-height: calc(100vh - 300px); display: flex; align-items: center;">
+    <div class="row w-100">
+        <div class="col-md-6 col-lg-4 mx-auto">
+            <!-- 登录卡片 -->
+            <div class="card-modern">
+                <!-- 品牌Logo -->
+                <div class="card-body-modern text-center border-bottom">
+                    <a href="{{url_for('home.index')}}" class="text-decoration-none">
+                        <i class="fas fa-store" style="font-size: 2.5rem; color: #007BFF;"></i>
+                        <div class="mt-2 fw-bold fs-5">51商城</div>
+                    </a>
+                </div>
+
+                <!-- 登录表单 -->
+                <div class="card-body-modern">
+                    <h3 class="mb-4 text-center">会员登录</h3>
+
+                    <!-- 错误提示 -->
+                    {% for msg in get_flashed_messages(category_filter=["err"]) %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="fas fa-exclamation-circle me-2"></i>{{ msg }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+
+                    <form action="" method="post" class="form-modern" novalidate>
+                        <!-- 账户输入 -->
+                        <div class="form-group-modern mb-4">
+                            <label for="username" class="form-label-modern">
+                                <i class="fas fa-user text-primary me-1"></i>账户
+                            </label>
+                            {{form.username(class="form-control-modern", placeholder="请输入用户名或邮箱")}}
+                            {% for err in form.username.errors %}
+                                <small class="text-danger d-block mt-1">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>{{ err }}
+                                </small>
+                            {% endfor %}
+                        </div>
+
+                        <!-- 密码输入 -->
+                        <div class="form-group-modern mb-4">
+                            <label for="password" class="form-label-modern">
+                                <i class="fas fa-lock text-primary me-1"></i>密码
+                            </label>
+                            {{form.password(class="form-control-modern", placeholder="请输入密码")}}
+                            {% for err in form.password.errors %}
+                                <small class="text-danger d-block mt-1">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>{{ err }}
+                                </small>
+                            {% endfor %}
+                        </div>
+
+                        <!-- 验证码 -->
+                        <div class="form-group-modern mb-4">
+                            <label for="verify_code" class="form-label-modern">
+                                <i class="fas fa-image text-primary me-1"></i>验证码
+                            </label>
+                            <div class="d-flex gap-2">
+                                <div class="flex-grow-1">
+                                    {{form.verify_code(class="form-control-modern", placeholder="请输入验证码")}}
+                                </div>
+                                <img src="{{url_for('home.get_code')}}" width="100" height="40"
+                                     class="rounded border border-secondary cursor-pointer"
+                                     style="cursor: pointer; object-fit: cover;"
+                                     onclick="this.src='{{url_for('home.get_code')}}'+'?'+ Math.random()"
+                                     title="点击更换验证码">
+                            </div>
+                            {% for err in form.verify_code.errors %}
+                                <small class="text-danger d-block mt-1">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>{{ err }}
+                                </small>
+                            {% endfor %}
+                        </div>
+
+                        <!-- CSRF Token -->
+                        {{form.csrf_token()}}
+
+                        <!-- 登录按钮 -->
+                        <div class="d-grid gap-2 mb-3">
+                            {{form.submit(class="btn btn-primary btn-modern py-2")}}
+                        </div>
+
+                        <!-- 注册链接 -->
+                        <div class="text-center pt-3 border-top">
+                            <p class="text-muted small mb-0">
+                                没有账户？
+                                <a href="{{url_for('home.register')}}" class="text-primary fw-bold">立即注册</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- 页脚信息 -->
+                <div class="card-body-modern bg-light border-top text-center" style="font-size: 0.75rem;">
+                    <p class="text-muted mb-1">
+                        <i class="fas fa-lock me-1"></i>安全登录 · 隐私保护
+                    </p>
+                    <a href="{{url_for('home.index')}}" class="text-decoration-none text-muted small">返回首页</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    .img_checkcode:hover {
+        opacity: 0.8;
+        transition: opacity 0.2s ease;
+    }
+</style>
+{% endblock %}
